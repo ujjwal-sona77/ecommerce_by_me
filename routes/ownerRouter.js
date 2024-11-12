@@ -4,12 +4,13 @@ const bcrypt = require("bcrypt");
 const Owner = require("../models/ownerModel");
 const Product = require("../models/productModel");
 const jwt = require("jsonwebtoken");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedIn , (req, res, next) => {
     const error = req.flash("error");
     res.render("ownerSignup", { error });
 });
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedIn , (req, res, next) => {
     const error = req.flash("error");
     res.render("ownerLogin", { error });
 });
