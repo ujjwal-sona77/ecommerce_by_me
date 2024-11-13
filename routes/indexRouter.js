@@ -3,11 +3,14 @@ const router = express.Router();
 const userModel = require("../models/userModel");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const productModel = require("../models/productModel");
+const logout = require("../utils/Loggout");
 
 router.get("/", (req, res) => {
     const error = req.flash("error");
     res.render("index", { error });
 });
+
+router.get("/logout", logout);
 
 router.get("/login", (req, res) => {
     const error = req.flash("error");

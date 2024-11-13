@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#111827] text-white w-full h-screen">
+    <% if(success.length> 0) { %>
+        <div class="bg-green-500 text-white p-2 rounded-md w-fit">
+            <%= success %>
+        </div>
+        <% } %>
+            <main class="w-full h-screen [#111827] text-white">
+                <div class="flex flex-wrap gap-4 justify-start p-4">
+                    <% products.forEach(product=> { %>
+                        <div class="w-60 bg-gray-800 rounded-lg overflow-hidden p-5 shadow-lg">
+                            <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
+                                <img class="h-[12rem] object-contain"
+                                    src="data:image/png;base64,<%= product.image.toString('base64') %>"
+                                    alt="<%= product.name %>">
+                            </div>
+                            <div class="p-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
+                                <h3 class="text-xl font-semibold mb-2">
+                                    <%= product.name %>
+                                </h3>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-lg">₹<%= product.price %>
+                                        </p>
+                                        <% if(product.discount) { %>
+                                            <p class="text-sm text-gray-400 line-through">₹<%= product.discount %>
+                                            </p>
+                                            <% } %>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <a href="/owner/edit/product/<%= product._id %>"
+                                            class="p-2 bg-blue-500 rounded-full hover:bg-blue-600">
+                                            <i class="ri-edit-line"></i>
+                                        </a>
+                                        <a href="/owner/delete/product/<%= product._id %>"
+                                            class="p-2 bg-red-500 rounded-full hover:bg-red-600">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </main>
+</body>
+
+</html>
