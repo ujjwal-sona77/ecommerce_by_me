@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <h1>Shopping Cart</h1>
+
+    <div class="shopping-cart">
+
+        <div class="column-labels">
+            <label class="product-image">Image</label>
+            <label class="product-details">Product</label>
+            <label class="product-price">Price</label>
+            <label class="product-quantity">Quantity</label>
+            <label class="product-removal">Remove</label>
+            <label class="product-line-price">Total</label>
+        </div>
+
+        <% user.cart.forEach(function(product){ %>
+            <div class="text-white p-4 product w-full flex items-center justify-between h-[30vh] bg-gray-900">
+                <div class="imagee flex flex-col items-center justify-center">
+                    <img class="w-[11vw] h-[20vh] rounded-md"
+                        src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+                    <div class="product-details">
+                        <div class="product-title text-xl font-bold text-center">
+                            <%= product.name %>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-price">
+                    <%= product.price %>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+
+</body>
+
+</html>

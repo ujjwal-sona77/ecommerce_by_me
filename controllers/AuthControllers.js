@@ -15,7 +15,7 @@ module.exports.registerUser = async (req, res) => {
                     const user = await userModel.create({ fullname, email, password: hash });
                     let token = jwt.sign({ email, id: user._id }, process.env.JWT_SECRET);
                     res.cookie("token", token);
-                    res.send("user registered successfully");
+                    res.redirect("/shop");
                 });
             });
         }
@@ -36,7 +36,7 @@ module.exports.loginUser = async (req, res) => {
             if (result) {
                 let token = jwt.sign({ email, id: user._id }, process.env.JWT_SECRET);
                 res.cookie("token", token);
-                res.redirect("/");
+                res.redirect("/shop");
             } else {
                 req.flash("error", "Invalid username or password");
                 res.redirect("/login");

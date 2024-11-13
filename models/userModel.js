@@ -15,15 +15,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    picture: String,
+    picture: Buffer,
     orders: {
         type: Array,
         default: []
     },
-    cart: {
-        type: Array,
-        default: []
-    },
+    cart: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+    }],
     isAdmin: {
         type: Boolean,
         default: false
