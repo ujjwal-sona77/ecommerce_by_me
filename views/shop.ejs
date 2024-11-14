@@ -106,8 +106,8 @@
                                     <div>
                                         <h3 class="text-[<%= product.textcolor %>] font-medium"><%= product.name %></h3>
                                         <% if(product.discount) { %>
-                                            <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.discount %></p>
-                                            <p class="text-sm text-gray-400 line-through">₹<%= product.price %></p>
+                                            <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.price %></p>
+                                            <p class="text-sm text-gray-400 line-through">₹<%= product.discount %></p>
                                         <% } else { %>
                                             <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.price %></p>
                                         <% } %>
