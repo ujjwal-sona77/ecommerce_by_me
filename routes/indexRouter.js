@@ -18,6 +18,7 @@ router.get("/login", (req, res) => {
 });
 router.get("/cart", isLoggedIn, async (req, res) => {
     const user = await userModel.findOne({ email: req.user.email }).populate("cart");
+
     res.render("cart", { user });
 });
 
@@ -28,12 +29,48 @@ router.get("/shop", isLoggedIn, async (req, res) => {
     res.render("shop", { products , user , success });
 });
 
+router.post("/cart/increase/:productid", isLoggedIn, async (req, res) => {
+    const user = await userModel.findOne({ email: req.user.email });
+    user.cart.push(req.params.productid);
+    await user.save();
+    res.redirect("/cart");
+});
+
+router.post("/cart/remove/:productid", isLoggedIn, async (req, res) => {
+    const user = await userModel.findOne({ email: req.user.email });
+    // Find index of first matching product ID
+    const index = user.cart.findIndex(id => id.toString() === req.params.productid);
+    if (index !== -1) {
+        // Remove only one instance of the product
+        user.cart.splice(index, 1);
+        await user.save();
+    }
+    res.redirect("/cart");
+});
+
+router.post("/cart/decrease/:productid", isLoggedIn, async (req, res) => {
+    const user = await userModel.findOne({ email: req.user.email });
+    // Find index of first matching product ID
+    const index = user.cart.findIndex(id => id.toString() === req.params.productid);
+    if (index !== -1) {
+        // Remove only one instance of the product
+        user.cart.splice(index, 1);
+        await user.save();
+    }
+    res.redirect("/cart");
+});
+
 router.get("/addtocart/:productid", isLoggedIn, async (req, res) => {
     const user = await userModel.findOne({ email: req.user.email });
     user.cart.push(req.params.productid);
     await user.save();
     res.redirect("/shop");
     req.flash("success", "Product added to cart");
+});
+
+router.post("/cart/checkout", isLoggedIn, async (req, res) => {
+    const user = await userModel.findOne({ email: req.user.email }).populate("cart");
+    res.render("checkout", { user });
 });
 
 module.exports = router;

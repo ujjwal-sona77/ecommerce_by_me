@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#111827] text-white">
+    <nav class="border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-COMMERCE</span>
+            </a>
+            <a href="/owner/allusers" class="text-white hover:text-blue-500">Back to Users</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Edit User</h1>
+        
+        <div class="max-w-md mx-auto bg-gray-800 rounded-lg p-6">
+            <form action="/owner/edit/user/<%= user._id %>" method="POST" class="space-y-6">
+                <div>
+                    <label for="fullname" class="block text-sm font-medium text-gray-300">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" value="<%= user.fullname %>" 
+                           class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                    <input type="email" id="email" name="email" value="<%= user.email %>"
+                           class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300">Role</label>
+                    <select name="isAdmin" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
+                        <option value="false" <%= !user.isAdmin ? 'selected' : '' %>>User</option>
+                        <option value="true" <%= user.isAdmin ? 'selected' : '' %>>Admin</option>
+                    </select>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <a href="/owner/allusers" 
+                       class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
+                        Cancel
+                    </a>
+                    <button type="submit" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

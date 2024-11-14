@@ -4,162 +4,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
 </head>
 
-<body>
-    <% if(success.length> 0){ %>
-        <div class=" w-full h-10 flex items-center justify-center bg-green-500 text-white p-2">
+<body class="bg-gray-50">
+    <% if(success.length > 0) { %>
+        <div class="bg-green-500 text-white p-4 text-center">
             <%= success %>
         </div>
-        <% } %>
+    <% } %>
 
-            <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-                <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                        <span
-                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-COMMERCE</span>
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 w-auto" alt="Logo">
+                        <span class="ml-2 text-xl font-semibold">E-COMMERCE</span>
                     </a>
-                    <button data-collapse-toggle="navbar-dropdown" type="button"
-                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-dropdown" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 1h15M1 7h15M1 13h15" />
-                        </svg>
-                    </button>
-                    <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-                        <ul
-                            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                            <li>
-                                <a href="/shop"
-                                    class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
-                                    aria-current="page">Shop</a>
-                            </li>
-                            <li>
-                                <a href="/cart"
-                                    class="block py-2 px-3 text-white bg-white rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-wgite md:dark:bg-transparent"
-                                    aria-current="page">Cart</a>
-                            </li>
-                            <li>
-                                <a href="/cart"
-                                    class="block py-2 px-3 text-white bg-white rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-wgite md:dark:bg-transparent"
-                                    aria-current="page">Cart</a>
-                            </li>
-                            <li>
-                                <a href="/logout"
-                                    class="block py-2 px-3 text-red-900 bg-white rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-wgite md:dark:bg-transparent"
-                                    aria-current="page">Logout</a>
-                            </li>
-                            <li>
-                                <% if(user.isAdmin){ %>
-                                    <a href="/owner"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Owner
-                                        DashBoard</a>
-                                    <% } %>
-                            </li>
-                            <li>
-                                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                                    class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown
-                                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg></button>
-                                <!-- Dropdown menu -->
-                                <div id="dropdownNavbar"
-                                    class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-400"
-                                        aria-labelledby="dropdownLargeButton">
-                                        <li>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                                            out</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
-            </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="/shop" class="text-gray-700 hover:text-blue-600">Shop</a>
+                    <a href="/cart" class="text-gray-700 hover:text-blue-600">Cart</a>
+                    <a href="/users/profile" class="text-gray-700 hover:text-blue-600">Profile</a>
+                    <% if(user.isAdmin) { %>
+                        <a href="/owner" class="text-gray-700 hover:text-blue-600">Owner Dashboard</a>
+                    <% } %>
+                    <a href="/logout" class="text-red-600 hover:text-red-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-            <div class="w-full h-screen flex items-start px-20 py-20">
-                <div class="w-[25%] flex h-screen flex-col items-start">
-                    <div class="flex items-center gap-2">
-                        <h3>sort by</h3>
-                        <form action="/shop">
-                            <select class="border-[1px] px-2 py-1" name="sortby" id="">
-                                <option value="popular">Popular</option>
-                                <option value="newest">Newest</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div class="flex flex-col mt-20">
-                        <a class="block w-fit mb-2" href="">New Collection</a>
-                        <a class="block w-fit mb-2" href="">All Products</a>
-                        <a class="block w-fit mb-2" href="">Discounted Products</a>
-                    </div>
-                    <div class="mt-32">
-                        <a class="block w-fit mb-2" href="">Filter by :</a>
-                        <a class="block w-fit mb-2" href="">Availability</a>
-                        <a class="block w-fit mb-2" href="">Discount</a>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex gap-8">
+            <!-- Sidebar -->
+            <div class="w-64 flex-shrink-0">
+                <div class="mb-8">
+                    <h3 class="font-medium text-gray-900 mb-4">Sort By</h3>
+                    <form action="/shop" class="flex items-center">
+                        <select name="sortby" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="popular">Popular</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </form>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="font-medium text-gray-900 mb-4">Categories</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-600 hover:text-blue-600">New Collection</a>
+                        <a href="#" class="text-gray-600 hover:text-blue-600">All Products</a>
+                        <a href="#" class="text-gray-600 hover:text-blue-600">Discounted Products</a>
                     </div>
                 </div>
-                <div class="w-[75%] flex flex-col gap-5 h-screen">
-                    <div class="flex items-start gap-5">
-                        <% products.forEach(function(product){ %>
-                            <div class="w-60">
-                                <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                                    <img class="h-[12rem]"
-                                        src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
-                                </div>
-                                <div
-                                    class="flex justify-between bg-[<%= product.panelcolor %>] items-center px-4 py-4 text-[<%= product.textcolor %>]">
-                                    <div>
-                                        <h3>
-                                            <%= product.name %>
-                                        </h3>
-                                        <h4>₹ <%= product.price %>
-                                        </h4>
-                                    </div>
-                                    <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                                        href="/addtocart/<%= product._id %>">
-                                        <i class="ri-add-line"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <% }) %>
+
+                <div>
+                    <h3 class="font-medium text-gray-900 mb-4">Filters</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-600 hover:text-blue-600">Availability</a>
+                        <a href="#" class="text-gray-600 hover:text-blue-600">Discount</a>
                     </div>
                 </div>
             </div>
-            <script src="https://cdn.tailwindcss.com"></script>
+
+            <!-- Product Grid -->
+            <div class="flex-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <% products.forEach(function(product) { %>
+                        <div class="bg-white rounded-lg shadow overflow-hidden">
+                            <div class="h-48 flex items-center justify-center bg-[<%= product.bgcolor %>]">
+                                <img class="h-40 w-auto object-contain" 
+                                     src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                                     alt="<%= product.name %>">
+                            </div>
+                            <div class="p-4 bg-[<%= product.panelcolor %>]">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h3 class="text-[<%= product.textcolor %>] font-medium"><%= product.name %></h3>
+                                        <% if(product.discount) { %>
+                                            <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.discount %></p>
+                                            <p class="text-sm text-gray-400 line-through">₹<%= product.price %></p>
+                                        <% } else { %>
+                                            <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.price %></p>
+                                        <% } %>
+                                    </div>
+                                    <a href="/addtocart/<%= product._id %>" 
+                                       class="p-2 bg-white rounded-full hover:bg-gray-50 transition-colors">
+                                        <i class="ri-add-line text-gray-700"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

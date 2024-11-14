@@ -14,7 +14,8 @@ const userModel = require("../models/userModel");
 
 router.get("/", isLoggedIn, isAdmin, async (req, res) => {
     const user = await userModel.findOne({ email: req.user.email })
-    res.render("ownerDashboard", { user });
+    const success = req.flash("success");
+    res.render("ownerDashboard", { user, success });
 });
 
 router.get("/allproducts", isLoggedIn, isAdmin, async (req, res) => {
@@ -28,7 +29,28 @@ router.get("/createproduct", isLoggedIn, isAdmin, (req, res, next) => {
     const success = req.flash("success");
     res.render("createproducts", { success });
 });
+router.get("/allusers", isLoggedIn, isAdmin, async (req, res) => {
+    const users = await userModel.find();
+    const success = req.flash("success");
+    res.render("allusers", { users, success });
+});
 
+router.post("/delete/user/:id", isLoggedIn, isAdmin, async (req, res) => {
+    await userModel.findOneAndDelete({ _id: req.params.id });
+    res.redirect("/owner/allusers");
+    req.flash("success", "User deleted successfully");
+});
+
+router.post("/edit/user/:id", isLoggedIn, isAdmin, async (req, res) => {
+    await userModel.findOneAndUpdate({ _id: req.params.id }, { fullname: req.body.fullname, email: req.body.email, isAdmin: req.body.isAdmin });
+    res.redirect("/owner/allusers");
+    req.flash("success", "User updated successfully");
+});
+
+router.get("/edit/user/:id", isLoggedIn, isAdmin, async (req, res) => {
+    const user = await userModel.findOne({ _id: req.params.id });
+    res.render("edituser", { user });
+});
 router.get("/delete/product/:id", isLoggedIn, isAdmin, async (req, res) => {
     try {
         await productModel.findOneAndDelete({ _id: req.params.id });

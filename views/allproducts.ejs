@@ -4,54 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Products</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
 </head>
 
-<body class="bg-[#111827] text-white w-full h-screen">
-    <% if(success.length> 0) { %>
-        <div class="bg-green-500 text-white p-2 rounded-md w-fit">
-            <%= success %>
+<body class="bg-[#111827] text-white">
+    <nav class="border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-COMMERCE</span>
+            </a>
+            <a href="/owner" class="text-white hover:text-blue-500">Back to Dashboard</a>
         </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <% if(success.length > 0) { %>
+            <div class="bg-green-500 text-white p-4 mb-6 rounded-md">
+                <%= success %>
+            </div>
         <% } %>
-            <main class="w-full h-screen [#111827] text-white">
-                <div class="flex flex-wrap gap-4 justify-start p-4">
-                    <% products.forEach(product=> { %>
-                        <div class="w-60 bg-gray-800 rounded-lg overflow-hidden p-5 shadow-lg">
-                            <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                                <img class="h-[12rem] object-contain"
-                                    src="data:image/png;base64,<%= product.image.toString('base64') %>"
-                                    alt="<%= product.name %>">
+
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">All Products</h1>
+            <a href="/owner/createproduct" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+                Add New Product
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <% products.forEach(product => { %>
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
+                        <img class="h-[12rem] object-contain" 
+                             src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                             alt="<%= product.name %>">
+                    </div>
+                    <div class="p-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
+                        <h3 class="text-xl font-semibold mb-2"><%= product.name %></h3>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-lg font-bold">₹<%= product.price %></p>
+                                <% if(product.discount) { %>
+                                    <p class="text-sm text-gray-400 line-through">₹<%= product.discount %></p>
+                                <% } %>
                             </div>
-                            <div class="p-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
-                                <h3 class="text-xl font-semibold mb-2">
-                                    <%= product.name %>
-                                </h3>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <p class="text-lg">₹<%= product.price %>
-                                        </p>
-                                        <% if(product.discount) { %>
-                                            <p class="text-sm text-gray-400 line-through">₹<%= product.discount %>
-                                            </p>
-                                            <% } %>
-                                    </div>
-                                    <div class="flex gap-2">
-                                        <a href="/owner/edit/product/<%= product._id %>"
-                                            class="p-2 bg-blue-500 rounded-full hover:bg-blue-600">
-                                            <i class="ri-edit-line"></i>
-                                        </a>
-                                        <a href="/owner/delete/product/<%= product._id %>"
-                                            class="p-2 bg-red-500 rounded-full hover:bg-red-600">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="flex gap-2">
+                                <a href="/owner/edit/product/<%= product._id %>" 
+                                   class="p-2 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors">
+                                    <i class="ri-edit-line"></i>
+                                </a>
+                                <a href="/owner/delete/product/<%= product._id %>" 
+                                   class="p-2 bg-red-500 rounded-full hover:bg-red-600 transition-colors"
+                                   onclick="return confirm('Are you sure you want to delete this product?')">
+                                    <i class="ri-delete-bin-line"></i>
+                                </a>
                             </div>
                         </div>
-                        <% }) %>
+                    </div>
                 </div>
-            </main>
+            <% }) %>
+        </div>
+    </div>
 </body>
 
 </html>
