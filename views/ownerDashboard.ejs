@@ -18,15 +18,15 @@
 
     <nav class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
+            <div class="flex flex-col sm:flex-row justify-between py-4 sm:h-16">
+                <div class="flex items-center justify-center sm:justify-start mb-4 sm:mb-0">
                     <a href="/" class="flex items-center">
                         <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 w-auto" alt="Logo">
                         <span class="ml-2 text-xl font-semibold">E-COMMERCE</span>
                     </a>
                 </div>
                 
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center justify-center sm:justify-end space-x-4">
                     <a href="/shop" class="text-gray-700 hover:text-blue-600">Shop</a>
                     <a href="/cart" class="text-gray-700 hover:text-blue-600">Cart</a>
                     <a href="/users/profile" class="text-gray-700 hover:text-blue-600">Profile</a>
@@ -37,10 +37,10 @@
     </nav>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex">
+        <div class="flex flex-col lg:flex-row">
             <!-- Sidebar -->
-            <div class="w-64 mr-8">
-                <h2 class="text-lg font-medium text-gray-900 mb-4">Dashboard Menu</h2>
+            <div class="w-full lg:w-64 mb-8 lg:mb-0 lg:mr-8">
+                <h2 class="text-lg font-medium text-gray-900 mb-4 text-center lg:text-left">Dashboard Menu</h2>
                 <nav class="space-y-2">
                     <a href="/owner/allproducts" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
                         <i class="ri-shopping-bag-line mr-3"></i>
@@ -59,18 +59,18 @@
 
             <!-- Main Content -->
             <div class="flex-1">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h1 class="text-2xl font-bold text-gray-900 mb-6">Welcome to Owner Dashboard</h1>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6">
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center lg:text-left">Welcome to Owner Dashboard</h1>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         <!-- Products Card -->
                         <a href="/owner/allproducts" class="block">
-                            <div class="bg-blue-50 p-6 rounded-lg hover:bg-blue-100 transition-colors">
+                            <div class="bg-blue-50 p-4 sm:p-6 rounded-lg hover:bg-blue-100 transition-colors">
                                 <div class="flex items-center">
-                                    <i class="ri-shopping-bag-line text-3xl text-blue-600"></i>
+                                    <i class="ri-shopping-bag-line text-2xl sm:text-3xl text-blue-600"></i>
                                     <div class="ml-4">
-                                        <h3 class="text-lg font-medium text-gray-900">Products</h3>
-                                        <p class="text-sm text-gray-500">Manage your products</p>
+                                        <h3 class="text-base sm:text-lg font-medium text-gray-900">Products</h3>
+                                        <p class="text-xs sm:text-sm text-gray-500">Manage your products</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,25 +78,25 @@
 
                         <!-- Users Card -->
                         <a href="/owner/allusers" class="block">
-                            <div class="bg-green-50 p-6 rounded-lg hover:bg-green-100 transition-colors">
+                            <div class="bg-green-50 p-4 sm:p-6 rounded-lg hover:bg-green-100 transition-colors">
                                 <div class="flex items-center">
-                                    <i class="ri-user-line text-3xl text-green-600"></i>
+                                    <i class="ri-user-line text-2xl sm:text-3xl text-green-600"></i>
                                     <div class="ml-4">
-                                        <h3 class="text-lg font-medium text-gray-900">Users</h3>
-                                        <p class="text-sm text-gray-500">Manage user accounts</p>
+                                        <h3 class="text-base sm:text-lg font-medium text-gray-900">Users</h3>
+                                        <p class="text-xs sm:text-sm text-gray-500">Manage user accounts</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
 
                         <!-- Settings Card -->
-                        <a href="/owner/settings" class="block">
-                            <div class="bg-purple-50 p-6 rounded-lg hover:bg-purple-100 transition-colors">
+                        <a href="/owner/settings" class="block sm:col-span-2 lg:col-span-1">
+                            <div class="bg-purple-50 p-4 sm:p-6 rounded-lg hover:bg-purple-100 transition-colors">
                                 <div class="flex items-center">
-                                    <i class="ri-settings-line text-3xl text-purple-600"></i>
+                                    <i class="ri-settings-line text-2xl sm:text-3xl text-purple-600"></i>
                                     <div class="ml-4">
-                                        <h3 class="text-lg font-medium text-gray-900">Settings</h3>
-                                        <p class="text-sm text-gray-500">Configure your store</p>
+                                        <h3 class="text-base sm:text-lg font-medium text-gray-900">Settings</h3>
+                                        <p class="text-xs sm:text-sm text-gray-500">Configure your store</p>
                                     </div>
                                 </div>
                             </div>

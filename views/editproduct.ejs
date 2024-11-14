@@ -10,75 +10,78 @@
 
 <body>
     <% if(success.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= success %>
-            </span>
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-sm">
+            <div class="p-3 rounded-md bg-blue-500">
+                <span class="block text-sm sm:text-base text-white text-center">
+                    <%= success %>
+                </span>
+            </div>
         </div>
     <% } %>
 
     <div class="min-h-screen flex flex-col">
-        <div class="container px-10 py-20 flex flex-grow">
-            <div class="w-[25%] flex h-screen flex-col items-start">
-                <div class="flex flex-col">
-                    <a class="block w-fit mb-2 hover:text-blue-500" href="/owner/allproducts">All Products</a>
-                    <a class="block w-fit mb-2 text-blue-500 font-medium" href="#">Edit Product</a>
+        <div class="container px-4 sm:px-6 lg:px-10 py-6 sm:py-10 lg:py-20 flex flex-col lg:flex-row flex-grow">
+            <div class="w-full lg:w-1/4 mb-6 lg:mb-0">
+                <div class="flex flex-row lg:flex-col space-x-4 lg:space-x-0">
+                    <a class="text-sm sm:text-base hover:text-blue-500 mb-0 lg:mb-2" href="/owner/allproducts">All Products</a>
+                    <a class="text-sm sm:text-base text-blue-500 font-medium" href="#">Edit Product</a>
                 </div>
             </div>
-            <main class="w-3/4 bg-white p-8 shadow ml-4 rounded-lg">   
-                <h2 class="text-2xl font-bold mb-6">Edit Product</h2>
+            
+            <main class="w-full lg:w-3/4 bg-white p-4 sm:p-6 lg:p-8 shadow rounded-lg lg:ml-4">   
+                <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Edit Product</h2>
                 <form autocomplete="off" action="/owner/edit/products/<%= product._id %>" method="post" enctype="multipart/form-data">
-                    <div class="mb-8">
-                        <h3 class="text-lg font-semibold mb-4">Product Details</h3>
-                        <div class="mb-6">
-                            <label class="block mb-2 font-medium text-gray-700">Product Image</label>
-                            <input name="image" type="file" class="py-2 px-4 rounded border w-full" accept="image/*">
+                    <div class="mb-6 sm:mb-8">
+                        <h3 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Product Details</h3>
+                        <div class="mb-4 sm:mb-6">
+                            <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Product Image</label>
+                            <input name="image" type="file" class="py-2 px-4 rounded border w-full text-sm sm:text-base" accept="image/*">
                             <% if(product.image) { %>
-                                <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="Current product image" class="mt-2 h-32 object-contain">
+                                <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="Current product image" class="mt-2 h-24 sm:h-32 object-contain">
                             <% } %>
                         </div>
-                        <div class="grid grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             <div>
-                                <label class="block mb-2 font-medium text-gray-700">Product Name</label>
+                                <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Product Name</label>
                                 <input name="name" type="text" placeholder="Enter product name" value="<%= product.name %>"
-                                    class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="border p-2 sm:p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base">
                             </div>
                             <div>
-                                <label class="block mb-2 font-medium text-gray-700">Product Price</label>
+                                <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Product Price</label>
                                 <input name="price" type="number" step="0.01" placeholder="Enter price" value="<%= product.price %>"
-                                    class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="border p-2 sm:p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base">
                             </div>
                             <div>
-                                <label class="block mb-2 font-medium text-gray-700">Discount Price</label>
+                                <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Discount Price</label>
                                 <input name="discount" type="number" step="0.01" placeholder="Enter discount price" value="<%= product.discount %>"
-                                    class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="border p-2 sm:p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base">
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-6">
-                        <h3 class="text-lg font-semibold mb-4">Panel Details</h3>
-                        <div class="grid grid-cols-2 gap-6">
+                        <h3 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Panel Details</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             <div>
-                                <label class="block mb-2 font-medium text-gray-700">Background Color</label>
+                                <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Background Color</label>
                                 <input name="bgcolor" type="color" value="<%= product.bgcolor %>"
                                     class="h-10 w-full rounded border">
                             </div>
                             <div>
-                                <label class="block mb-2 font-medium text-gray-700">Panel Color</label>
+                                <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Panel Color</label>
                                 <input name="panelcolor" type="color" value="<%= product.panelcolor %>"
                                     class="h-10 w-full rounded border">
                             </div>
                             <div>
-                                <label class="block mb-2 font-medium text-gray-700">Text Color</label>
+                                <label class="block mb-2 font-medium text-gray-700 text-sm sm:text-base">Text Color</label>
                                 <input name="textcolor" type="color" value="<%= product.textcolor %>"
                                     class="h-10 w-full rounded border">
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-end gap-4">
-                        <a href="/owner/allproducts" class="px-6 py-2 rounded bg-gray-100 hover:bg-gray-200 text-gray-700">Cancel</a>
-                        <button type="submit" class="px-6 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white">
+                    <div class="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4">
+                        <a href="/owner/allproducts" class="w-full sm:w-auto px-4 sm:px-6 py-2 rounded bg-gray-100 hover:bg-gray-200 text-gray-700 text-center text-sm sm:text-base">Cancel</a>
+                        <button type="submit" class="w-full sm:w-auto px-4 sm:px-6 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white text-sm sm:text-base">
                             Save Changes
                         </button>
                     </div>

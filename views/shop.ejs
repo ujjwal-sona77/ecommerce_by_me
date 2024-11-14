@@ -26,7 +26,7 @@
                     </a>
                 </div>
                 
-                <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-4">
                     <a href="/shop" class="text-gray-700 hover:text-blue-600">Shop</a>
                     <a href="/cart" class="text-gray-700 hover:text-blue-600">Cart</a>
                     <a href="/users/profile" class="text-gray-700 hover:text-blue-600">Profile</a>
@@ -35,14 +35,34 @@
                     <% } %>
                     <a href="/logout" class="text-red-600 hover:text-red-700">Logout</a>
                 </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="mobile-menu-button p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="/shop" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Shop</a>
+                    <a href="/cart" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cart</a>
+                    <a href="/users/profile" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Profile</a>
+                    <% if(user.isAdmin) { %>
+                        <a href="/owner" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Owner Dashboard</a>
+                    <% } %>
+                    <a href="/logout" class="block px-3 py-2 text-red-600 hover:text-red-700">Logout</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex gap-8">
+        <div class="flex flex-col md:flex-row gap-8">
             <!-- Sidebar -->
-            <div class="w-64 flex-shrink-0">
+            <div class="w-full md:w-64 flex-shrink-0">
                 <div class="mb-8">
                     <h3 class="font-medium text-gray-900 mb-4">Sort By</h3>
                     <form action="/shop" class="flex items-center">
@@ -104,6 +124,16 @@
             </div>
         </div>
     </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 
 </html>

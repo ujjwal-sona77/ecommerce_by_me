@@ -13,56 +13,62 @@
     <nav class="border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-COMMERCE</span>
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 sm:h-8" alt="Flowbite Logo" />
+                <span class="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap dark:text-white">E-COMMERCE</span>
             </a>
             <a href="/owner" class="text-white hover:text-blue-500">Back to Dashboard</a>
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8">All Users</h1>
+    <div class="container mx-auto px-4 py-4 sm:py-8">
+        <h1 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-center sm:text-left">All Users</h1>
         
         <div class="overflow-x-auto">
-            <table class="min-w-full bg-gray-800 rounded-lg overflow-hidden">
-                <thead class="bg-gray-700">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Name</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Role</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Cart Items</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-700">
-                    <% users.forEach(user => { %>
-                        <tr class="hover:bg-gray-700">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-200"><%= user.fullname %></div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-200"><%= user.email %></div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= user.isAdmin ? 'bg-green-500' : 'bg-blue-500' %> text-white">
-                                    <%= user.isAdmin ? 'Admin' : 'User' %>
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-200"><%= user.cart.length %> items</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <form action="/owner/delete/user/<%= user._id %>" method="POST" class="inline">
-                                    <button type="submit" class="text-red-500 hover:text-red-700 mr-3">Delete</button>
-                                </form>
-                                <form action="/owner/edit/user/<%= user._id %>" method="GET" class="inline">
-                                    <button type="submit" class="text-blue-500 hover:text-blue-700">Edit</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden shadow-md sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-700 bg-gray-800">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-300 uppercase tracking-wider">Name</th>
+                                <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-300 uppercase tracking-wider">Email</th>
+                                <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-300 uppercase tracking-wider">Role</th>
+                                <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-300 uppercase tracking-wider hidden sm:table-cell">Cart Items</th>
+                                <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-300 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-700">
+                            <% users.forEach(user => { %>
+                                <tr class="hover:bg-gray-700">
+                                    <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                                        <div class="text-xs sm:text-sm text-gray-200"><%= user.fullname %></div>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                                        <div class="text-xs sm:text-sm text-gray-200 truncate max-w-[150px] sm:max-w-none"><%= user.email %></div>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full <%= user.isAdmin ? 'bg-green-500' : 'bg-blue-500' %> text-white">
+                                            <%= user.isAdmin ? 'Admin' : 'User' %>
+                                        </span>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap hidden sm:table-cell">
+                                        <div class="text-xs sm:text-sm text-gray-200"><%= user.cart.length %> items</div>
+                                    </td>
+                                    <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium">
+                                        <div class="flex flex-col sm:flex-row gap-2">
+                                            <form action="/owner/delete/user/<%= user._id %>" method="POST" class="inline">
+                                                <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                            </form>
+                                            <form action="/owner/edit/user/<%= user._id %>" method="GET" class="inline">
+                                                <button type="submit" class="text-blue-500 hover:text-blue-700">Edit</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>
