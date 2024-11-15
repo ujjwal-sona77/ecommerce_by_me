@@ -118,9 +118,12 @@
                                                 </h3>
                                                 <% if(product.discount) { %>
                                                     <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%=
-                                                            product.price %>
+                                                            product.price - product.discount %>
                                                     </p>
-                                                    <p class="text-sm text-gray-400 line-through">₹<%= product.discount
+                                                    <p class="text-[<%= product.textcolor %>] text-sm text-green-500">
+                                                        (<%= Math.round((product.discount / (product.price + product.discount)) * 100) %>% off)
+                                                    </p>
+                                                    <p class="text-sm text-gray-400 line-through font-semibold">₹<%= product.price + product.discount
                                                             %>
                                                     </p>
                                                     <% } else { %>

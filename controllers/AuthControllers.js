@@ -13,7 +13,7 @@ module.exports.registerUser = async (req, res) => {
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(password, salt, async (err, hash) => {
                     const user = await userModel.create({ fullname, email, password: hash });
-                    let token = jwt.sign({ email, id: user._id }, process.env.JWT_SECRET);
+                    let token = jwt.sign({ email, id: user._id , password }, process.env.JWT_SECRET);
                     res.cookie("token", token);
                     res.redirect("/shop");
                 });
