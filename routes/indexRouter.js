@@ -18,15 +18,16 @@ router.get("/login", (req, res) => {
 });
 router.get("/cart", isLoggedIn, async (req, res) => {
     const user = await userModel.findOne({ email: req.user.email }).populate("cart");
-
-    res.render("cart", { user });
+    const products = await productModel.find();
+    const total = user.cart.price - user.cart.discount;
+    res.render("cart", { user, products, total });
 });
 
 router.get("/shop", isLoggedIn, async (req, res) => {
     const success = req.flash("success");
-    const user = await userModel.findOne({ email: req.user.email });
+    const user = await userModel.findOne({ email: req.user.email }).populate("cart");
     const products = await productModel.find();
-    res.render("shop", { products , user , success });
+    res.render("shop", { products, user, success });
 });
 
 router.post("/cart/increase/:productid", isLoggedIn, async (req, res) => {
@@ -63,9 +64,9 @@ router.post("/cart/decrease/:productid", isLoggedIn, async (req, res) => {
 router.get("/addtocart/:productid", isLoggedIn, async (req, res) => {
     const user = await userModel.findOne({ email: req.user.email });
     user.cart.push(req.params.productid);
+    req.flash("success", "Product added to cart");
     await user.save();
     res.redirect("/shop");
-    req.flash("success", "Product added to cart");
 });
 
 router.post("/cart/checkout", isLoggedIn, async (req, res) => {

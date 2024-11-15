@@ -10,11 +10,6 @@
 </head>
 
 <body class="bg-gray-50">
-    <% if(success.length > 0) { %>
-        <div class="bg-green-500 text-white p-4 text-center">
-            <%= success %>
-        </div>
-    <% } %>
 
     <nav class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,20 +20,21 @@
                         <span class="ml-2 text-xl font-semibold">E-COMMERCE</span>
                     </a>
                 </div>
-                
+
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="/shop" class="text-gray-700 hover:text-blue-600">Shop</a>
                     <a href="/cart" class="text-gray-700 hover:text-blue-600">Cart</a>
                     <a href="/users/profile" class="text-gray-700 hover:text-blue-600">Profile</a>
                     <% if(user.isAdmin) { %>
                         <a href="/owner" class="text-gray-700 hover:text-blue-600">Owner Dashboard</a>
-                    <% } %>
-                    <a href="/logout" class="text-red-600 hover:text-red-700">Logout</a>
+                        <% } %>
+                            <a href="/logout" class="text-red-600 hover:text-red-700">Logout</a>
                 </div>
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button type="button" class="mobile-menu-button p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none">
+                    <button type="button"
+                        class="mobile-menu-button p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none">
                         <i class="ri-menu-line text-2xl"></i>
                     </button>
                 </div>
@@ -52,8 +48,8 @@
                     <a href="/users/profile" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Profile</a>
                     <% if(user.isAdmin) { %>
                         <a href="/owner" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Owner Dashboard</a>
-                    <% } %>
-                    <a href="/logout" class="block px-3 py-2 text-red-600 hover:text-red-700">Logout</a>
+                        <% } %>
+                            <a href="/logout" class="block px-3 py-2 text-red-600 hover:text-red-700">Logout</a>
                 </div>
             </div>
         </div>
@@ -66,7 +62,8 @@
                 <div class="mb-8">
                     <h3 class="font-medium text-gray-900 mb-4">Sort By</h3>
                     <form action="/shop" class="flex items-center">
-                        <select name="sortby" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <select name="sortby"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             <option value="popular">Popular</option>
                             <option value="newest">Newest</option>
                         </select>
@@ -90,38 +87,58 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Product Grid -->
-            <div class="flex-1">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <% products.forEach(function(product) { %>
-                        <div class="bg-white rounded-lg shadow overflow-hidden">
-                            <div class="h-48 flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                                <img class="h-40 w-auto object-contain" 
-                                     src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
-                                     alt="<%= product.name %>">
-                            </div>
-                            <div class="p-4 bg-[<%= product.panelcolor %>]">
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <h3 class="text-[<%= product.textcolor %>] font-medium"><%= product.name %></h3>
-                                        <% if(product.discount) { %>
-                                            <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.price %></p>
-                                            <p class="text-sm text-gray-400 line-through">₹<%= product.discount %></p>
-                                        <% } else { %>
-                                            <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%= product.price %></p>
-                                        <% } %>
-                                    </div>
-                                    <a href="/addtocart/<%= product._id %>" 
-                                       class="p-2 bg-white rounded-full hover:bg-gray-50 transition-colors">
-                                        <i class="ri-add-line text-gray-700"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    <% }) %>
+            <% if(success.length> 0) { %>
+                <div class="fixed top-4 right-4 md:top-6 md:right-6 bg-green-500 text-white p-4 rounded-lg shadow-lg max-w-sm transform transition-transform duration-300 hover:scale-105 z-50 animate-fade-in">
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm md:text-base"><%= success %></p>
+                        <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-green-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
+                <% } %>
+
+                    <!-- Product Grid -->
+                    <div class="flex-1">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <% products.forEach(function(product) { %>
+                                <div class="bg-white rounded-lg shadow overflow-hidden">
+                                    <div class="h-48 flex items-center justify-center bg-[<%= product.bgcolor %>]">
+                                        <img class="h-40 w-auto object-contain"
+                                            src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+                                            alt="<%= product.name %>">
+                                    </div>
+                                    <div class="p-4 bg-[<%= product.panelcolor %>]">
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <h3 class="text-[<%= product.textcolor %>] font-medium">
+                                                    <%= product.name %>
+                                                </h3>
+                                                <% if(product.discount) { %>
+                                                    <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%=
+                                                            product.price %>
+                                                    </p>
+                                                    <p class="text-sm text-gray-400 line-through">₹<%= product.discount
+                                                            %>
+                                                    </p>
+                                                    <% } else { %>
+                                                        <p class="text-[<%= product.textcolor %>] font-bold mt-1">₹<%=
+                                                                product.price %>
+                                                        </p>
+                                                        <% } %>
+                                            </div>
+                                            <a href="/addtocart/<%= product._id %>"
+                                                class="p-2 bg-white rounded-full hover:bg-gray-50 transition-colors">
+                                                <i class="ri-add-line text-gray-700"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
         </div>
     </main>
 
